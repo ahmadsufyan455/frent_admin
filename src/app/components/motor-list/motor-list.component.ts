@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MotorService } from 'src/app/service/motor.service';
+import { Motor } from 'src/app/models/motor.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-motor-list',
@@ -6,10 +9,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./motor-list.component.css']
 })
 export class MotorListComponent implements OnInit {
+  motors?: Motor[];
+  currentMotor?: Motor;
+  currentIndex = -1;
+  type = '';
 
-  constructor() { }
+  constructor(private motorService: MotorService) { }
 
   ngOnInit(): void {
+    this.retrieveMotors();
+  }
+
+  refreshList(): void {
+    this.currentMotor = undefined;
+    this.currentIndex = -1;
+    this.retrieveMotors();
+  }
+
+  retrieveMotors(): void {
+    this.motorService.getAllMotor().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.motors = data;
+    });
+  }
+
+  setActiveMotor(motor: Motor, index: number): void {
+    this.currentMotor = motor;
+    this.currentIndex = index;
   }
 
 }

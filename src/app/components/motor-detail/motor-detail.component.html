@@ -1,1 +1,35 @@
-<p>motor-detail works!</p>
+<div *ngIf="currentMotor" class="edit-form">
+    <h4>Motor</h4>
+    <form>
+        <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text" class="form-control" id="type" [(ngModel)]="currentMotor.type" name="type" />
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" [(ngModel)]="currentMotor.description"
+                name="description" />
+        </div>
+        <div class="form-group">
+            <label><strong>Status:</strong></label>
+            {{ currentMotor.status ? "Tersedia" : "Tidak Tersedia" }}
+        </div>
+    </form>
+    <button class="badge badge-primary mr-2" *ngIf="currentMotor.status" (click)="updatestatus(false)">
+        UnPublish
+    </button>
+    <button *ngIf="!currentMotor.status" class="badge badge-primary mr-2" (click)="updatestatus(true)">
+        Publish
+    </button>
+    <button class="badge badge-danger mr-2" (click)="deleteMotor()">
+        Delete
+    </button>
+    <button type="submit" class="badge badge-success" (click)="updateMotor()">
+        Update
+    </button>
+    <p>{{ message }}</p>
+</div>
+<div *ngIf="!currentMotor">
+    <br />
+    <p>Tidak dapat mengakases motor...</p>
+</div>

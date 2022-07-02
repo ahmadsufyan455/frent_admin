@@ -1,1 +1,20 @@
-<p>motor-list works!</p>
+<div class="list row">
+    <div class="col-md-6">
+        <h4>Daftar Motor</h4>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let motor of motors; let i = index"
+                [class.active]="i == currentIndex" (click)="setActiveMotor(motor, i)">
+                {{ motor.type }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="currentMotor">
+            <app-motor-detail (refreshList)="refreshList()" [motor]="currentMotor"></app-motor-detail>
+        </div>
+        <div *ngIf="!currentMotor">
+            <br />
+            <p>Silahkan pilih motor...</p>
+        </div>
+    </div>
+</div>
