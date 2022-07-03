@@ -52,7 +52,7 @@ export class MotorDetailComponent implements OnInit {
     };
     if (this.currentMotor.id) {
       this.motorService.updateMotor(this.currentMotor.id, data)
-        .then(() => this.message = 'Berhasil update data motor!')
+        .then(() => this.message = 'Berhasil memperbarui data motor!')
         .catch(err => console.log(err));
     }
   }
@@ -62,7 +62,7 @@ export class MotorDetailComponent implements OnInit {
       this.motorService.deleteMotor(this.currentMotor.id)
         .then(() => {
           this.refreshList.emit();
-          this.message = 'Berhasil hapus data motor!';
+          this.message = 'Berhasil menghapus data motor!';
         })
         .catch(err => console.log(err));
     }

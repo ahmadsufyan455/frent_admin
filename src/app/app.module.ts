@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { AddMotorComponent } from './components/add-motor/add-motor.component';
 import { MotorDetailComponent } from './components/motor-detail/motor-detail.component';
 import { MotorListComponent } from './components/motor-list/motor-list.component';
+import { BookingListComponent } from './components/booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddMotorComponent,
     MotorDetailComponent,
-    MotorListComponent
+    MotorListComponent,
+    BookingListComponent
   ],
   imports: [
     BrowserModule,
