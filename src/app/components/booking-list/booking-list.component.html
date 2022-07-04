@@ -1,1 +1,60 @@
-<p>booking-list works!</p>
+<div class="list row">
+    <div class="col">
+        <h4>Daftar Pesanan</h4>
+        <!-- <ul class="list-group">
+            <li class="list-group-item" *ngFor="let booking of bookings; let i = index"
+                [class.active]="i == currentIndex" (click)="setActiveBooking(booking, i)">
+                {{ booking.name }}
+            </li>
+        </ul> -->
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">No</th>
+                    <th>Nama</th>
+                    <th>Motor</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>Lokasi Penjemputan</th>
+                    <th>Lokasi Pengantaran</th>
+                    <th>Total Harga</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let booking of bookings; let num = index" 
+                [class.active]="num == currentIndex" (click)="setActiveBooking(booking, num)">
+                    <th scope="row">{{num+1}}</th>
+                    <td>{{booking.name}}</td>
+                    <td>{{booking.motorType}}</td>
+                    <td>{{booking.startDate}}</td>
+                    <td>{{booking.endDate}}</td>
+                    <td>{{booking.pickUpLocation}}</td>
+                    <td>{{booking.deliveryLocation}}</td>
+                    <td>{{booking.totalPrice}}</td>
+                    <div *ngIf="booking.isConfirm == true;else waiting">
+                        <div *ngIf="booking.isFinish == true;then end else confirm"></div>
+                    </div>
+                    <ng-template #waiting>
+                        <td style="color: red;">Menunggu Konfirmasi</td>
+                    </ng-template>
+                    <ng-template #confirm>
+                        <td style="color: green;">Dikonfirmasi</td>
+                    </ng-template>
+                    <ng-template #end>
+                        <td style="color: blue;">Selesai</td>
+                    </ng-template>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="col-md-6">
+        <div *ngIf="currentBooking">
+            <app-booking-detail (refreshList)="refreshList()" [tutorial]="currentTutorial"></app-booking-detail>
+        </div>
+        <div *ngIf="!currentBooking">
+            <br />
+            <p>Please click on a name...</p>
+        </div>
+    </div> -->
+</div>

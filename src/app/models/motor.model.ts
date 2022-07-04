@@ -5,7 +5,7 @@ export class Motor {
     image?: string;
     type?: string;
     description?: string;
-    price?: string;
-    quantity?: string;
+    price?: number;
+    quantity?: number;
     status?: boolean = true;
 }

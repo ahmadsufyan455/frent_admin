@@ -14,8 +14,8 @@ export class MotorDetailComponent implements OnInit {
     type: '',
     description: '',
     image: '',
-    price: '',
-    quantity: '',
+    price: 0,
+    quantity: 0,
     status: false
   };
   message = '';

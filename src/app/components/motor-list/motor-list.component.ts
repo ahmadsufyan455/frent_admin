@@ -34,6 +34,7 @@ export class MotorListComponent implements OnInit {
         )
       )
     ).subscribe(data => {
+      console.log(data);
       this.motors = data;
     });
   }
