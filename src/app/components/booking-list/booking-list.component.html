@@ -19,6 +19,7 @@
                     <th>Lokasi Pengantaran</th>
                     <th>Total Harga</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +45,10 @@
                     <ng-template #end>
                         <td style="color: blue;">Selesai</td>
                     </ng-template>
+                    <td>
+                        <button class="badge badge-success" (click)="updateConfirmStatus(true, num)">Konfirmasi</button>
+                        <button class="badge badge-primary" (click)="updateEndStatus(true, num)">Selesaikan</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

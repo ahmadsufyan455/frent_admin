@@ -44,4 +44,20 @@ export class BookingListComponent implements OnInit {
     this.currentIndex = index;
   }
 
+  updateConfirmStatus(status: boolean, i: number): void {
+    this.bookingService.updateBooking(this.bookings![i].id!, { isConfirm: status })
+      .then(() => {
+        this.bookings![i].isConfirm = status;
+      })
+      .catch(err => console.log(err));
+  }
+
+  updateEndStatus(status: boolean, i: number): void {
+    this.bookingService.updateBooking(this.bookings![i].id!, { isFinish: status })
+      .then(() => {
+        this.bookings![i].isFinish = status;
+      })
+      .catch(err => console.log(err));
+  }
+
 }

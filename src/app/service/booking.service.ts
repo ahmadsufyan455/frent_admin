@@ -16,4 +16,8 @@ export class BookingService {
    getAllData(): AngularFirestoreCollection<Booking> {
     return this.bookingDataRef;
    }
+
+   updateBooking(id: string, data: any): Promise<void> {
+    return this.bookingDataRef.doc(id).update(data);
+   }
 }
