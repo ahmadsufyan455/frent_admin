@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookingService } from 'src/app/service/booking.service';
 import { map } from 'rxjs/operators';
 import { Booking } from 'src/app/models/booking.model';
+import { User } from 'src/app/models/user.model';
  
 @Component({
   selector: 'app-booking-list',
@@ -9,6 +10,7 @@ import { Booking } from 'src/app/models/booking.model';
   styleUrls: ['./booking-list.component.css']
 })
 export class BookingListComponent implements OnInit {
+  users?: User[];
   bookings?: Booking[];
   currentBooking?: Booking;
   currentIndex = -1;
@@ -18,6 +20,7 @@ export class BookingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveBookingData();
+    this.retrieveUserData();
   }
 
   refreshList(): void {
@@ -36,6 +39,19 @@ export class BookingListComponent implements OnInit {
     ).subscribe(data => {
       console.log(data);
       this.bookings = data;
+    });
+  }
+
+  retrieveUserData(): void {
+    this.bookingService.getAllUser().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      console.log(data);
+      this.users = data;
     });
   }
 
