@@ -1,7 +1,7 @@
-var myNum = 1800016074;
+var motorNumber = 99;
 export class Motor {
     id?: string;
-    motorId?: String = (myNum++).toString();
+    motorId?: String = (motorNumber = motorNumber + 1).toString();
     image?: string;
     type?: string;
     description?: string;

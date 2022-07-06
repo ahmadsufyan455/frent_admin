@@ -8,7 +8,7 @@ import { Motor } from '../models/motor.model';
 export class MotorService {
   private dbPath = '/MotorData';
   motorDataRef: AngularFirestoreCollection<Motor>;
-  myNum = 1800016074;
+  docId = 99;
 
   constructor(private db: AngularFirestore) { 
     this.motorDataRef = db.collection(this.dbPath);
@@ -19,7 +19,7 @@ export class MotorService {
    }
 
    addMotor(motor: Motor): any {
-    return this.motorDataRef.doc((this.myNum++).toString()).set(({...motor}));
+    return this.motorDataRef.doc((this.docId = this.docId + 1).toString()).set(({...motor}));
    }
 
    updateMotor(id: string, data: any): Promise<void> {
