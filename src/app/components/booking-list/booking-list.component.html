@@ -25,20 +25,20 @@
     </div>
 </div>
 <h4 class="mb-3">Daftar Pesanan</h4>
-<table class="table">
+<table class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">No</th>
-            <th>Nama</th>
-            <th>No Whatsaap</th>
-            <th>Motor</th>
-            <th>Tanggal Mulai</th>
-            <th>Tanggal Selesai</th>
-            <th>Lokasi Penjemputan</th>
-            <th>Lokasi Pengantaran</th>
-            <th>Total Harga</th>
-            <th>Status</th>
-            <th>Aksi</th>
+            <th scope="col" class="th-sm">No</th>
+            <th class="th">Nama</th>
+            <th class="th">No WA</th>
+            <th class="th">Motor</th>
+            <th class="th">Tgl Mulai</th>
+            <th class="th">Tgl Selesai</th>
+            <th class="th">Lokasi Jemput</th>
+            <th class="th">Lokasi Antar</th>
+            <th class="th">Total Harga</th>
+            <th class="th">Status</th>
+            <th class="th">Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -66,14 +66,8 @@
                 <td style="color: blue;">Selesai</td>
             </ng-template>
             <td>
-                <div class="row">
-                    <div class="col">
-                        <button class="badge badge-success" (click)="updateConfirmStatus(true, num)">Konfirmasi</button>
-                    </div>
-                    <div class="col">
-                        <button class="badge badge-primary" (click)="updateEndStatus(true, num)">Selesaikan</button>
-                    </div>
-                </div>
+                <button class="badge badge-success mr-2" (click)="updateConfirmStatus(true, num)">Konfirmasi</button>
+                <button class="badge badge-primary" (click)="updateEndStatus(true, num)">Selesaikan</button>
             </td>
         </tr>
     </tbody>
