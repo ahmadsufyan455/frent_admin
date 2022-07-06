@@ -4,7 +4,7 @@
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let motor of motors; let i = index"
                 [class.active]="i == currentIndex" (click)="setActiveMotor(motor, i)">
-                {{ motor.type }}
+                <b>{{ motor.type }}</b> | Tersedia {{motor.quantity}} motor
             </li>
         </ul>
     </div>
