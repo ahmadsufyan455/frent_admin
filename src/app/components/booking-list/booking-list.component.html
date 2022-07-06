@@ -16,12 +16,13 @@
         </div>
     </div>
 </div>
-<h4>Daftar Pesanan</h4>
+<h4 class="mb-3">Daftar Pesanan</h4>
 <table class="table">
     <thead class="thead-dark">
         <tr>
             <th scope="col">No</th>
             <th>Nama</th>
+            <th>No Whatsaap</th>
             <th>Motor</th>
             <th>Tanggal Mulai</th>
             <th>Tanggal Selesai</th>
@@ -37,6 +38,7 @@
             (click)="setActiveBooking(booking, num)">
             <th scope="row">{{num+1}}</th>
             <td>{{booking.name}}</td>
+            <td>{{booking.phoneNumber}}</td>
             <td>{{booking.motorType}}</td>
             <td>{{booking.startDate}}</td>
             <td>{{booking.endDate}}</td>
@@ -56,8 +58,14 @@
                 <td style="color: blue;">Selesai</td>
             </ng-template>
             <td>
-                <button class="badge badge-success" (click)="updateConfirmStatus(true, num)">Konfirmasi</button>
-                <button class="badge badge-primary" (click)="updateEndStatus(true, num)">Selesaikan</button>
+                <div class="row">
+                    <div class="col">
+                        <button class="badge badge-success" (click)="updateConfirmStatus(true, num)">Konfirmasi</button>
+                    </div>
+                    <div class="col">
+                        <button class="badge badge-primary" (click)="updateEndStatus(true, num)">Selesaikan</button>
+                    </div>
+                </div>
             </td>
         </tr>
     </tbody>
