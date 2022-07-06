@@ -3,6 +3,8 @@ import { BookingService } from 'src/app/service/booking.service';
 import { map } from 'rxjs/operators';
 import { Booking } from 'src/app/models/booking.model';
 import { User } from 'src/app/models/user.model';
+import { MotorService } from 'src/app/service/motor.service';
+import { Motor } from 'src/app/models/motor.model';
  
 @Component({
   selector: 'app-booking-list',
@@ -10,17 +12,19 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./booking-list.component.css']
 })
 export class BookingListComponent implements OnInit {
+  motors?: Motor[];
   users?: User[];
   bookings?: Booking[];
   currentBooking?: Booking;
   currentIndex = -1;
   name = '';
 
-  constructor(private bookingService: BookingService) { }
+  constructor(private bookingService: BookingService, private motorService: MotorService) { }
 
   ngOnInit(): void {
     this.retrieveBookingData();
     this.retrieveUserData();
+    this.retrieveMotorData();
   }
 
   refreshList(): void {
@@ -52,6 +56,19 @@ export class BookingListComponent implements OnInit {
     ).subscribe(data => {
       console.log(data);
       this.users = data;
+    });
+  }
+
+  retrieveMotorData(): void {
+    this.motorService.getAllMotor().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      console.log(data);
+      this.motors = data;
     });
   }
 
